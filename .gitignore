@@ -1,0 +1,22 @@
+# Godot addons
+/addons/
+
+# Godot 4+ specific
+*.godot
+*.import
+*.translation
+
+# OS/Editor
+.DS_Store
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Temporary files
+*.tmp
+*.temp
