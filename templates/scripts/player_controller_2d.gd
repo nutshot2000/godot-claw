@@ -96,5 +96,5 @@ func _update_animation(direction: float) -> void:
 	else:
 		animation_player.play("idle")
 
-func get_gravity() -> float:
+func get_gravity_value() -> float:
 	return ProjectSettings.get_setting("physics/2d/default_gravity")

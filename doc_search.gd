@@ -100,7 +100,7 @@ func _extract_title(content: String) -> String:
 	var lines = content.split("\n")
 	for line in lines:
 		if line.begins_with("# "):
-			return line.replace("# ", "").strip()
+			return line.replace("# ", "").strip_edges()
 	return "Untitled"
 
 func _extract_summary(content: String) -> String:
@@ -113,7 +113,7 @@ func _extract_summary(content: String) -> String:
 			in_code_block = !in_code_block
 			continue
 		
-		if !in_code_block and !line.begins_with("#") and line.strip() != "":
+		if !in_code_block and !line.begins_with("#") and line.strip_edges() != "":
 			summary_lines.append(line)
 			if summary_lines.size() >= 3:
 				break
