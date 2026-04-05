@@ -39,7 +39,7 @@ var jump_buffer_timer: float = 0.0
 func _physics_process(delta: float) -> void:
 	# Apply gravity
 	if not is_on_floor():
-		velocity.y += get_gravity() * gravity_scale * delta
+		velocity.y += get_gravity().y * gravity_scale * delta
 		velocity.y = min(velocity.y, max_fall_speed)
 	
 	# Update coyote time
