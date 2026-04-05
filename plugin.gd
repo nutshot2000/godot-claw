@@ -21,9 +21,12 @@ var openclaw_url: String = DEFAULT_OPENCLAW_URL
 var current_model: String = ""
 
 func _enter_tree():
+    print("[godotclaw] Loading docs index...")
     _load_docs_index()
+    print("[godotclaw] Creating UI...")
     dock_panel = _create_ui()
     add_control_to_dock(DOCK_SLOT_RIGHT_UL, dock_panel)
+    print("[godotclaw] UI created, adding HTTP client...")
     
     openclaw_client = HTTPRequest.new()
     dock_panel.add_child(openclaw_client)
@@ -76,7 +79,6 @@ func _create_ui() -> Control:
     panel.add_child(chat_output)
     
     chat_input = TextEdit.new()
-    chat_input.placeholder_text = "Ask about Godot, GDScript..."
     chat_input.custom_minimum_size.y = 80
     panel.add_child(chat_input)
     
@@ -186,12 +188,13 @@ func get_scene_context() -> Dictionary:
     return context
 
 func _send_message():
-    var prompt = chat_input.text.strip_edges()
-    if prompt.is_empty():
+    var text = chat_input.get_text()
+    var prompt = text.strip_edges()
+    if prompt.length() == 0:
         return
     
     _add_user_message(prompt)
-    chat_input.text = ""
+    chat_input.set_text("")
     status_label.text = "Thinking..."
     send_button.disabled = true
     
